@@ -69,6 +69,7 @@ print("Unique tags are:", tags)
 
 num_words = len(words)
 num_tags = len(tags)
+
 num_words
 ```
 
@@ -92,9 +93,12 @@ class SentenceGetter(object):
             return s
         except:
             return None
+
 getter = SentenceGetter(data)
 sentences = getter.sentences
+
 len(sentences)
+
 sentences[0]
 ```
 
@@ -136,12 +140,21 @@ model = Model(input_word, output)
 ### Model Summary ,Compilation and fitting the model
 ```py
 model.summary()
-model.compile(optimizer="adam",loss="sparse_categorical_crossentropy",metrics=["accuracy"])
-history = model.fit(x=X_train,y=y_train,validation_data=(X_test,y_test),batch_size=64, epochs=3,)
+model.compile(optimizer="adam",
+              loss="sparse_categorical_crossentropy",
+              metrics=["accuracy"])
+history = model.fit(
+    x=X_train,
+    y=y_train,
+    validation_data=(X_test,y_test),
+    batch_size=32,
+    epochs=3,
+)
+
 metrics = pd.DataFrame(model.history.history)
 metrics.head()
-metrics[['loss','val_loss']].plot()
 metrics[['accuracy','val_accuracy']].plot()
+metrics[['loss','val_loss']].plot()
 ```
 
 ### Sample Text prediction
